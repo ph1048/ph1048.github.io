@@ -45,13 +45,13 @@ social:
     - https://github.com/ph1048 # change to your github homepage
     - https://www.linkedin.com/in/alexander-kalinin-security
 
-google_site_verification: # fill in to your verification string
+google_site_verification: --AteobME0BgHZXsgGmYrbAEi7HmKW6KNOZsBuydpCk
 
 # ↑ --------------------------
 # The end of `jekyll-seo-tag` settings
 
 google_analytics:
-  id: # fill in your Google Analytics ID
+  id: G-QQFBRJBB16
 
 # Prefer color scheme setting.
 #
