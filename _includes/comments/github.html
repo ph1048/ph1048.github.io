@@ -108,7 +108,7 @@ function displayComments(comments) {
 async function fetchComments() {
   try {
     const comments = await (await fetch(
-      'https://api.github.com/repos/{{ site.comments.github.issues_repo }}/issues/{{ page.comments_id }}/comments'
+      'https://api.github.com/repos/{{ site.comments.github.issues_repo }}/issues/{{ page.comments_id }}/comments?c=' + Math.round(new Date().getTime() / 1000 / 60 / 5)
     )).json();
     displayComments(comments);
   } catch (e) {
