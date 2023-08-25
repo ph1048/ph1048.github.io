@@ -78,3 +78,8 @@ categories:
   post_measure:
     singular: Eintrag
     plural: Einträge
+
+comments:
+  replied: commented at
+  comms: Comments
+  reply: Post comment

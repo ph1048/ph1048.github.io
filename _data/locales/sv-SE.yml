@@ -89,3 +89,8 @@ categories:
   post_measure:
     singular: inlägg
     plural: inlägg
+
+comments:
+  replied: commented at
+  comms: Comments
+  reply: Post comment

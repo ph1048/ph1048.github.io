@@ -89,3 +89,8 @@ categories:
   post_measure:
     singular: Δημοσίευση
     plural: Δημοσιεύσεις
+
+comments:
+  replied: commented at
+  comms: Comments
+  reply: Post comment

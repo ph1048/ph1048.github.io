@@ -75,3 +75,8 @@ post:
 categories:
   category_measure: categorias
   post_measure: posts
+
+comments:
+  replied: commented at
+  comms: Comments
+  reply: Post comment

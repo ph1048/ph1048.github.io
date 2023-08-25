@@ -82,3 +82,8 @@ df:
 categories:
   category_measure: 카테고리
   post_measure: 포스트
+
+comments:
+  replied: commented at
+  comms: Comments
+  reply: Post comment

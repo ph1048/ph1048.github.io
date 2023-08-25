@@ -74,3 +74,8 @@ post:
 categories:
   category_measure: danh mục
   post_measure: bài viết
+
+comments:
+  replied: commented at
+  comms: Comments
+  reply: Post comment

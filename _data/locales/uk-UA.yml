@@ -75,3 +75,8 @@ post:
 categories:
   category_measure: категорії
   post_measure: публікації
+
+comments:
+  replied: commented at
+  comms: Comments
+  reply: Post comment

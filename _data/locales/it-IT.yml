@@ -88,3 +88,8 @@ categories:
   post_measure:
     singular: post
     plural: posts
+
+comments:
+  replied: commented at
+  comms: Comments
+  reply: Post comment

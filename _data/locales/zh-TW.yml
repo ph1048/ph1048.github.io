@@ -81,3 +81,8 @@ df:
 categories:
   category_measure: 個分類
   post_measure: 篇文章
+
+comments:
+  replied: commented at
+  comms: Comments
+  reply: Post comment

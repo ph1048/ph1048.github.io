@@ -1,0 +1,120 @@
+<section id="comments">
+  <div class="comment-actions">
+    <h2>{{ site.data.locales[lang].comments.comms }} <span id="comments-count"></span></h2>
+  </div>
+  <style>
+    .post-comment {
+        font-size: 14px;
+    }
+    .post-comment-body {
+        margin-top: 5px;
+        margin-bottom: 25px;
+    }
+    .post-comment-avatar {
+        width: 32px;
+        height: 32px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+    }
+    .post-comment-username {
+        font-weight: 700;
+        font-size: 15px;
+        margin: 6px;
+    }
+    .post-comment-date {
+        font-size: 13px;
+    }
+    .king {
+        color: #00ffae;
+    }
+    #comments-wrapper {
+        padding-top: 25px;
+    }
+  </style>
+  <a
+  class="button"
+  href="https://github.com/{{ site.comments.github.issues_repo }}/issues/{{ page.comments_id }}"
+  >{{ site.data.locales[lang].comments.reply }}</a>
+  <div id="comments-wrapper">
+    Loading...
+  </div>
+</section>
+
+<!-- Comments script -->
+<script>
+  const commentsSection = document.getElementById('comments');
+  const commentsWrapper = commentsSection.querySelector('#comments-wrapper');
+  const commentsCount = commentsSection.querySelector('#comments-count');
+
+  const commentsObserver = new IntersectionObserver((entries, self) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      fetchComments(); // this is the important part
+      self.unobserve(entry.target);
+    }
+  });
+}, { rootMargin: '200px 0px 0px 0px' });
+
+commentsObserver.observe(commentsSection);
+
+getCommentNode = (c) => {
+
+    avatar = document.createElement("img")
+    avatar.setAttribute("class", "post-comment-avatar")
+    avatar.setAttribute("src", c.user.avatar_url)
+
+    userlink = document.createElement("a")
+    if (c.author_association == "OWNER") {
+        userlink.setAttribute("class", "post-comment-username king")
+        userlink.innerText = "{{ site.social.name }}"
+    } else {
+        userlink.setAttribute("class", "post-comment-username")
+        userlink.innerText = c.user.login
+    }
+    userlink.setAttribute("href", c.user.html_url)
+
+    date = document.createElement("span")
+    date.setAttribute("class", "post-comment-date")
+    d = new Date(c.created_at)
+    fmtd = new Intl.DateTimeFormat(["{{ lang }}", "en-US"]).format(d)
+    date.innerText = "{{ site.data.locales[lang].comments.replied }}" + " " + fmtd
+
+    header = document.createElement("header")
+    header.setAttribute("class", "post-comment-meta")
+    header.appendChild(avatar)
+    header.appendChild(userlink)
+    header.appendChild(date)
+
+    commBodyDiv = document.createElement("div")
+    commBodyDiv.setAttribute("class", "post-comment-body")
+    commBodyDiv.innerText = c.body
+
+
+    commDiv = document.createElement("div")
+    commDiv.setAttribute("class", "post-comment")
+    commDiv.appendChild(header)
+    commDiv.appendChild(commBodyDiv)
+
+    return commDiv
+}
+
+displayComments = (comments) => {
+    commentsWrapper.innerHTML = ''
+    for (i in comments) {
+        commentsWrapper.appendChild(getCommentNode(comments[i]))
+    }
+}
+
+const fetchComments = async () => {
+  try {
+    const comments = await (await fetch(
+      'https://api.github.com/repos/{{ site.comments.github.issues_repo }}/issues/{{ page.comments_id }}/comments'
+    )).json();
+    displayComments(comments);
+  } catch (e) {
+    commentsWrapper.innerHTML = `Failed to fetch comments`;
+  }
+}
+
+
+</script>

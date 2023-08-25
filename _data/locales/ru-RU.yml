@@ -47,7 +47,7 @@ not_found:
 
 notification:
   update_found: Доступна новая версия контента.
-  update: Обновлять
+  update: Обновить
 
 # ----- Posts related labels -----
 
@@ -75,3 +75,8 @@ post:
 categories:
   category_measure: категории
   post_measure: публикации
+
+comments:
+  comms: Комментарии
+  replied: написал
+  reply: Ответить
