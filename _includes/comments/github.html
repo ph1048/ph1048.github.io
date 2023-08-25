@@ -57,7 +57,7 @@
 
 commentsObserver.observe(commentsSection);
 
-getCommentNode = (c) => {
+function getCommentNode(c) {
 
     avatar = document.createElement("img");
     avatar.setAttribute("class", "post-comment-avatar");
@@ -98,14 +98,14 @@ getCommentNode = (c) => {
     return commDiv;
 }
 
-displayComments = (comments) => {
+function displayComments(comments) {
     commentsWrapper.innerHTML = '';
     for (i in comments) {
         commentsWrapper.appendChild(getCommentNode(comments[i]));
     }
 }
 
-const fetchComments = async () => {
+async function fetchComments() {
   try {
     const comments = await (await fetch(
       'https://api.github.com/repos/{{ site.comments.github.issues_repo }}/issues/{{ page.comments_id }}/comments'
