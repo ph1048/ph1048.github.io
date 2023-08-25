@@ -49,7 +49,7 @@
   const commentsObserver = new IntersectionObserver((entries, self) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      fetchComments(); // this is the important part
+      fetchComments();
       self.unobserve(entry.target);
     }
   });
@@ -59,49 +59,49 @@ commentsObserver.observe(commentsSection);
 
 getCommentNode = (c) => {
 
-    avatar = document.createElement("img")
-    avatar.setAttribute("class", "post-comment-avatar")
-    avatar.setAttribute("src", c.user.avatar_url)
+    avatar = document.createElement("img");
+    avatar.setAttribute("class", "post-comment-avatar");
+    avatar.setAttribute("src", c.user.avatar_url);
 
-    userlink = document.createElement("a")
+    userlink = document.createElement("a");
     if (c.author_association == "OWNER") {
-        userlink.setAttribute("class", "post-comment-username king")
+        userlink.setAttribute("class", "post-comment-username king");
         userlink.innerText = "{{ site.social.name }}"
     } else {
-        userlink.setAttribute("class", "post-comment-username")
-        userlink.innerText = c.user.login
+        userlink.setAttribute("class", "post-comment-username");
+        userlink.innerText = c.user.login;
     }
-    userlink.setAttribute("href", c.user.html_url)
+    userlink.setAttribute("href", c.user.html_url);
 
-    date = document.createElement("span")
-    date.setAttribute("class", "post-comment-date")
-    d = new Date(c.created_at)
-    fmtd = new Intl.DateTimeFormat(["{{ lang }}", "en-US"]).format(d)
-    date.innerText = "{{ site.data.locales[lang].comments.replied }}" + " " + fmtd
+    date = document.createElement("span");
+    date.setAttribute("class", "post-comment-date");
+    d = new Date(c.created_at);
+    fmtd = new Intl.DateTimeFormat(["{{ lang }}", "en-US"]).format(d);
+    date.innerText = "{{ site.data.locales[lang].comments.replied }}" + " " + fmtd;
 
-    header = document.createElement("header")
-    header.setAttribute("class", "post-comment-meta")
-    header.appendChild(avatar)
-    header.appendChild(userlink)
-    header.appendChild(date)
+    header = document.createElement("header");
+    header.setAttribute("class", "post-comment-meta");
+    header.appendChild(avatar);
+    header.appendChild(userlink);
+    header.appendChild(date);
 
-    commBodyDiv = document.createElement("div")
-    commBodyDiv.setAttribute("class", "post-comment-body")
-    commBodyDiv.innerText = c.body
+    commBodyDiv = document.createElement("div");
+    commBodyDiv.setAttribute("class", "post-comment-body");
+    commBodyDiv.innerText = c.body;
 
 
-    commDiv = document.createElement("div")
-    commDiv.setAttribute("class", "post-comment")
-    commDiv.appendChild(header)
-    commDiv.appendChild(commBodyDiv)
+    commDiv = document.createElement("div");
+    commDiv.setAttribute("class", "post-comment");
+    commDiv.appendChild(header);
+    commDiv.appendChild(commBodyDiv);
 
-    return commDiv
+    return commDiv;
 }
 
 displayComments = (comments) => {
-    commentsWrapper.innerHTML = ''
+    commentsWrapper.innerHTML = '';
     for (i in comments) {
-        commentsWrapper.appendChild(getCommentNode(comments[i]))
+        commentsWrapper.appendChild(getCommentNode(comments[i]));
     }
 }
 
